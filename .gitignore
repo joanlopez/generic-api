@@ -1,0 +1,5 @@
+/vendor
+.env
+.idea
+
+tests/_output/*
