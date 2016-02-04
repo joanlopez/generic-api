@@ -1,5 +1,7 @@
 ## Generic REST API made with Lumen
 
+#### ***IMPORTANT: Not thought for production environments
+
 ### Table of Contents
 1. [Environment](#environment)
 2. [Test Suites](#test-suites)

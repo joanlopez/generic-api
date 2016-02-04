@@ -16,3 +16,5 @@ $app->get('/', function () use ($app) {
 });
 
 $app->get('test', 'TestController@testRoute');
+
+$app->get('{collection}', 'CollectionController@getCollection');

@@ -6,5 +6,10 @@ namespace Helper;
 
 class Api extends \Codeception\Module
 {
-
+    public function seeResponseJsonArrayLengthIs($expectedLength)
+    {
+        $response = $this->getModule('REST')->response;
+        $responseObject = json_decode($response);
+        \PHPUnit_Framework_Assert::assertEquals($expectedLength, count($responseObject));
+    }
 }
