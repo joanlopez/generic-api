@@ -12,7 +12,8 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~4.0",
-        "codeception/codeception": "*"
+        "codeception/codeception": "*",
+        "flow/jsonpath": ">0.2"
     },
     "autoload": {
         "psr-4": {

@@ -8,7 +8,9 @@ class TestController extends Controller
 {
     public function testRoute()
     {
-        $testArray = ['testMessage' => 'If you are reading this, it means that it works!'];
-        return $this->responseJSONMessage($testArray, SymfonyResponse::HTTP_OK);
+        return $this->responseJSONMessage(
+            'If you are reading this, it means that it works!',
+            SymfonyResponse::HTTP_OK
+        );
     }
 }
