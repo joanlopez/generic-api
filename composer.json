@@ -13,7 +13,8 @@
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~4.0",
         "codeception/codeception": "*",
-        "flow/jsonpath": ">0.2"
+        "flow/jsonpath": ">0.2",
+        "mockery/mockery": "0.9.4"
     },
     "autoload": {
         "psr-4": {
