@@ -1,5 +1,7 @@
 <?php
 
+//TODO: Add a way to manage the config related with the data files for tests
+
 $I = new ApiTester($scenario);
 $I->wantTo('perform that when GET a non-existing collection it returns an empty array');
 $I->sendGET('/hams');
