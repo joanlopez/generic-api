@@ -14,5 +14,6 @@ class AppRepositoryProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('App\Repositories\CollectionRepository', 'App\Repositories\CollectionRepositoryJSONImpl');
+        $this->app->bind('App\Repositories\FileRepository', 'App\Repositories\FileRepositoryImpl');
     }
 }

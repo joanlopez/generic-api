@@ -2,54 +2,31 @@
 
 namespace App\Repositories;
 
-use JsonPath\JsonObject;
-
 class CollectionRepositoryJSONImpl implements CollectionRepository
 {
-    const DATA_FILENAME = 'data.json';
-
     const STORAGE_PATH_RELATIVE_TO_ROOT = '/../storage/app';
 
+    const DATA_FILENAME = 'data.json';
+
     private $dataFilePath;
+    private $fileRepository;
 
-    const DEFAULT_DATA_FILE_CONTENT = '{}';
-
-    public function __construct()
+    public function __construct(FileRepository $fileRepository)
     {
         $this->dataFilePath = $_SERVER["DOCUMENT_ROOT"] . self::STORAGE_PATH_RELATIVE_TO_ROOT . '/' . self::DATA_FILENAME;
+        $this->fileRepository = $fileRepository;
     }
 
     public function getItemsOf($collection)
     {
-        if(file_exists($this->dataFilePath))
+        //TODO: Think if it must return a string
+        $jsonObject = $this->fileRepository->getJsonOf($this->dataFilePath);
+        $jsonResult = $jsonObject->get('$.' . $collection . '[*]');
+        if($jsonResult)
         {
-            $dataJSON = $this->fileGetJSON();
-            $jsonObject = new JsonObject($dataJSON);
-            $jsonResult = $jsonObject->get('$.' . $collection . '[*]');
-            if($jsonResult)
-            {
-                return $jsonResult;
-            }
-            return [];
-        } else {
-            $this->initDataFile();
+            return $jsonResult;
         }
+        return [];
     }
 
-    public function initDataFile()
-    {
-        $dataFile = fopen($this->dataFilePath, "w");
-        fwrite($dataFile, self::DEFAULT_DATA_FILE_CONTENT);
-        fclose($dataFile);
-    }
-
-    /**
-     * @return string
-     */
-    public function fileGetJSON()
-    {
-        $dataContent = file_get_contents($this->dataFilePath);
-        $dataJSON = json_decode($dataContent);
-        return $dataJSON;
-    }
 }
